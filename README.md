@@ -49,7 +49,7 @@ The stake function adds the balance of the user and the amount of value they pay
 > ```solidity 
 > uint256 public deadline = block.timestamp + 72 hours;
 > ```
-Now let's declare a deadline like this so that users can execute and withdraw
+Now let's declare a deadline like this so that users can execute and withdraw from the stake when the deadline is passed.
 
 ## execute() function
 ```solidity
