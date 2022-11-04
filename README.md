@@ -46,6 +46,10 @@ Additionally let's maintain a threshold of 1 ether so that stake can execute whe
 ```
 The stake function adds the balance of the user and the amount of value they pay into our mapping of ```balances```. This function then emits the event. The ```event Stake(address indexed sender, uint256 amount);``` declared before this function allows us to emit the changes to the frontend.
 
+> ```solidity 
+> uint256 public deadline = block.timestamp + 72 hours;
+> ```
+Now let's declare a deadline like this so that users can execute and withdraw
 
 ## execute() function
 ```solidity
