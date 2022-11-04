@@ -192,7 +192,10 @@ contract Staker {
 }
 ```
 
-In order for withdraw to work, 
+In order for withdraw to work, the stake should not be completed and we need to ensure that the user has balance in his account. Else, everything will be sent back to the user. Again, if you remember all these balances are stored in the mapping that we declared early on.
+
+
+## timeLeft() function
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -274,10 +277,8 @@ contract Staker {
     }
   }
 
-  // Add the `receive()` special function that receives eth and calls stake()
-  // function receive() public{
-
-  // }
-
 }
 ```
+The timeLeft() function is supposed to display the time left for the deadline to finish. 
+
+That's it! That's all the code that passes all tests. If you enjoyed that, and want to show me some support, you can send me ETH at 0x04b24656E4B114e4eF83f40a1161d1804e684D89.
