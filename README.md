@@ -1,6 +1,8 @@
 # Staker Contract to stake ETH for group funding effort
 I developed the contract for a decentralized staker contract that can be used for group funding efforts. This is the solution for the challenge 1 of Scaffold Eth - creating a token vendor. This particular code passes all the given 6 tests and has been accepted by speedrunethereum.
 
+> _Please do not copy this code as is, I suggest you work on your own solution and if necessary, take inspiration from the code that I've written._
+
 The following links will help you find my contracts and transactions:
 Staker Contract Code - [here](https://goerli.etherscan.io/address/0xf6BCDaFf77A1829de4eE60fb813F379ea7b8ae6B#code)
 Deployed at this link - http://sordid-card.surge.sh/
