@@ -35,9 +35,7 @@ Additionally let's maintain a threshold of 1 ether so that stake can execute whe
   uint256 public constant threshold = 1 ether;
 
   event Stake(address indexed sender, uint256 amount);
-
-  // Collect funds in a payable `stake()` function and track individual `balances` with a mapping:
-  // ( Make sure to add a `Stake(address,uint256)` event and emit it for the frontend <List/> display )
+  
   function stake() public payable{
     balances[msg.sender] += msg.value;
     emit Stake(msg.sender, msg.value);
@@ -74,15 +72,11 @@ contract Staker {
 
   event Stake(address indexed sender, uint256 amount);
 
-  // Collect funds in a payable `stake()` function and track individual `balances` with a mapping:
-  // ( Make sure to add a `Stake(address,uint256)` event and emit it for the frontend <List/> display )
   function stake() public payable{
     balances[msg.sender] += msg.value;
     emit Stake(msg.sender, msg.value);
   }
 
-  // After some `deadline` allow anyone to call an `execute()` function
-  // If the deadline has passed and the threshold is met, it should call `exampleExternalContract.complete{value: address(this).balance}()`
   bool public openForWithdraw = true;
 
   uint256 public deadline = block.timestamp + 72 hours;
@@ -99,9 +93,6 @@ contract Staker {
   }
 
   function execute() public deadlineExpired notCompleted{
-    // deadline should be lesser than the threshold   
-    //exampleExternalContract.complete{value: address(this).balance}();\\
-
     if(address(this).balance >= threshold){
       (bool sent, ) = address(exampleExternalContract).call{value: address(this).balance}(abi.encodeWithSignature("complete()"));
       require(sent, "Stake incomplete");
@@ -142,15 +133,11 @@ contract Staker {
 
   event Stake(address indexed sender, uint256 amount);
 
-  // Collect funds in a payable `stake()` function and track individual `balances` with a mapping:
-  // ( Make sure to add a `Stake(address,uint256)` event and emit it for the frontend <List/> display )
   function stake() public payable{
     balances[msg.sender] += msg.value;
     emit Stake(msg.sender, msg.value);
   }
 
-  // After some `deadline` allow anyone to call an `execute()` function
-  // If the deadline has passed and the threshold is met, it should call `exampleExternalContract.complete{value: address(this).balance}()`
   bool public openForWithdraw = true;
 
   uint256 public deadline = block.timestamp + 72 hours;
@@ -167,13 +154,6 @@ contract Staker {
   }
 
   function execute() public deadlineExpired notCompleted{
-    // deadline should be lesser than the threshold
-    // If the address(this).balance of the contract is over the threshold by the deadline, 
-    // you will want to call: exampleExternalContract.complete{value: address(this).balance}()
-    //require(address(this).balance <= threshold, "Lesser money than threshold");
-   
-    //exampleExternalContract.complete{value: address(this).balance}();\\
-
     if(address(this).balance > threshold){
       (bool sent, ) = address(exampleExternalContract).call{value: address(this).balance}(abi.encodeWithSignature("complete()"));
       require(sent, "Stake incomplete");
@@ -181,6 +161,7 @@ contract Staker {
   }
 
   // If the `threshold` was not met, allow everyone to call a `withdraw()` function to withdraw their balance
+  
   function withdraw() public notCompleted{
     //require(openForWithdraw == true, "Not open for withdraw");
     require(balances[msg.sender] > 0, "No balance in sender's account");
